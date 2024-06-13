@@ -57,4 +57,26 @@ courseRoute.delete("/delete/:courseid",auth1,auth2,async (req,res)=>{
        res.send({"error":error})
    }
 })
+courseRoute.get("/:courseid/progress",auth1,async (req,res)=>{
+    const {courseid}=req.params
+    try {
+        const data=await courseModel.findOne({_id:courseid})
+        console.log(data)
+        res.send({"res":data.progress})
+
+   } catch (error) {
+       res.send({"error":error})
+   }
+})
+courseRoute.post("/:courseid/progress",auth1,auth2,async (req,res)=>{
+    const {courseid}=req.params
+    try {
+        const data=await courseModel.findByIdAndUpdate({_id:courseid},req.body)
+        console.log(data)
+        res.send({"res":"progress has been updated"})
+
+   } catch (error) {
+       res.send({"error":error})
+   }
+})
 module.exports={courseRoute}

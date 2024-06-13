@@ -3,7 +3,8 @@ const mongoose=require('mongoose')
 const courseSchema=mongoose.Schema({
     title:String,
     duration:String,
-    description:String
+    description:String,
+    progress:String
 },{
     versionKey:false
 })
